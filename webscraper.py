@@ -28,11 +28,13 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 def webscrape_table():
     url = "https://www.greatschools.org/new-york/new-york/schools/?tableView=Overview&view=table"
-    driver = webdriver.Chrome()
-    driver.get(url)
+    options = webdriver.ChromeOptions()
+    options.binary_location = '/Users/lisaduan/Dropbox/Mac/Desktop/Google Chrome.app'
+    driver = webdriver.Chrome(executable_path='/usr/local/Caskroom/chromedriver/109.0.5414.74/chromedriver', options=options)
     # Wait for the table to load
     element = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "js-search-results"))
